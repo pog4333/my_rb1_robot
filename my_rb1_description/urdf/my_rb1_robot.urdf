@@ -6,7 +6,7 @@
     <gazebo reference="base_link">
         <material>Gazebo/Black</material>
     </gazebo>
-    <gazebo reference="link_front_laser">
+    <!-- <gazebo reference="link_front_laser">
         <material>Gazebo/Black</material>
     </gazebo>
     <gazebo reference="link_left_wheel">
@@ -26,7 +26,7 @@
     </gazebo>
     <gazebo reference="base_footprint">
         <material>Gazebo/Black</material>
-    </gazebo>
+    </gazebo> -->
 
     <!-- plugins -->
     <gazebo>
@@ -164,19 +164,19 @@
                 </geometry>
             </visual>
         </link> 
-                <!-- Joint - base / chaster wheel  front-->
-        <joint name="joint_base_chaster_wheel_front" type="fixed">
-            <origin rpy="0 0 0" xyz="0.1 0 -0.10" />
-            <child link="chaster_wheel_front" />
+                <!-- Joint - base / support chaster wheel  front-->
+        <joint name="joint_base_support_chaster_wheel_front" type="fixed">
+            <origin rpy="0 0 0" xyz="0.1 0 -0.14" />
+            <child link="support_chaster_wheel_front" />
             <parent link="base_link" />
             <axis rpy="0 0 0" xyz="0 0 0" />
             <limit effort="10000" velocity="1000" />
-            <joint_properties damping="1.0" friction="0" />
+            <joint_properties damping="1.0" friction="1.0" />
         </joint>
 
-        <!-- link chaster wheel front -->
+        <!-- link support chaster wheel front -->
 
-        <link name="chaster_wheel_front">
+        <link name="support_chaster_wheel_front">
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <inertial>
                 <mass value="0.5"/>
@@ -185,80 +185,101 @@
             </inertial>
             <!-- caster wheel support -->
             <collision>
-                <origin rpy="0 0 0" xyz="0 0 -0.01"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <sphere radius="0.05"/>
+                    <sphere radius="0.03"/>
                 </geometry>
             </collision>
             <visual>
-                <origin rpy="0 0 0" xyz="0 0 -0.01"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <sphere radius="0.05"/>
+                    <sphere radius="0.03"/>
                 </geometry>
-            </visual>                 
+            </visual> 
+        </link>
+                        <!-- Joint - support chaster wheel  front-->
+        <joint name="joint_chaster_wheel_front" type="continuous">
+            <origin rpy="0 0 0" xyz="0 0 -0.01" />
+            <child link="chaster_wheel_front" />
+            <parent link="support_chaster_wheel_front" />
+            <axis rpy="0 0 0" xyz="0 0 1" />
+            <limit effort="10000" velocity="1000" />
+            <joint_properties damping="1.0" friction="0" />
+        </joint>
+
+        <link name="chaster_wheel_front">
             <!-- chaster wheel -->
             <collision>
-                <origin rpy="0 0 0" xyz="0 0 -0.04"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
                     <sphere radius="0.025"/>
                 </geometry>
             </collision>
             <visual>
-                <origin rpy="0 0 0" xyz="0 0 -0.04"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
                     <sphere radius="0.025"/>
                 </geometry>
             </visual>
         </link> 
-        <!-- Joint - base / chaster wheel  back-->
-        <joint name="joint_base_chaster_wheel_back" type="fixed">
-            <origin rpy="0 0 0" xyz="-0.1 0 -0.1" />
-            <child link="chaster_wheel_back" />
+                <!-- Joint - base / support chaster wheel  back-->
+        <joint name="joint_base_support_chaster_wheel_back" type="fixed">
+            <origin rpy="0 0 0" xyz="-0.1 0 -0.14" />
+            <child link="support_chaster_wheel_back" />
             <parent link="base_link" />
             <axis rpy="0 0 0" xyz="0 0 0" />
             <limit effort="10000" velocity="1000" />
-            <joint_properties damping="1.0" friction="0" />
-        </joint> 
+            <joint_properties damping="1.0" friction="1.0" />
+        </joint>
 
-        <!-- link chaster wheel back -->
-  
-        <link name="chaster_wheel_back">
+        <!-- link support chaster wheel back -->
+
+        <link name="support_chaster_wheel_back">
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <inertial>
                 <mass value="0.5"/>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <inertia ixx="0.002526666666667" ixy="0" ixz="0" iyy="0.002526666666667" iyz="0" izz="0.005"/>
             </inertial>
-            
-
             <!-- caster wheel support -->
             <collision>
-                <origin rpy="0 0 0" xyz="0 0 -0.01"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <sphere radius="0.05"/>
+                    <sphere radius="0.03"/>
                 </geometry>
             </collision>
             <visual>
-                <origin rpy="0 0 0" xyz="0 0 -0.01"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <sphere radius="0.05"/>
+                    <sphere radius="0.03"/>
                 </geometry>
-            </visual>                 
+            </visual> 
+        </link>
+                        <!-- Joint - support chaster wheel  back-->
+        <joint name="joint_support_chaster_wheel_back" type="continuous">
+            <origin rpy="0 0 0" xyz="0 0 -0.01" />
+            <child link="chaster_wheel_back" />
+            <parent link="support_chaster_wheel_back" />
+            <axis rpy="0 0 0" xyz="0 0 1" />
+            <limit effort="10000" velocity="1000" />
+            <joint_properties damping="1.0" friction="0" />
+        </joint>
 
-            <!-- caster wheel -->
+        <link name="chaster_wheel_back">
+            <!-- chaster wheel -->
             <collision>
-                <origin rpy="0 0 0" xyz="0 0 -0.04"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
                     <sphere radius="0.025"/>
                 </geometry>
             </collision>
             <visual>
-                <origin rpy="0 0 0" xyz="0 0 -0.04"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
                     <sphere radius="0.025"/>
                 </geometry>
-            </visual>  
-        </link>  
+            </visual>
+        </link> 
 
 <!-- link base_footprint -->
         <joint name="base_link_base_footprint" type="fixed">
@@ -315,3 +336,6 @@
             </visual>
         </link>
 </robot>
+
+
+
